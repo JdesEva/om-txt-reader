@@ -2,7 +2,7 @@
   "name": "a-reader",
   "displayName": "A-Reader",
   "description": "一个在 VS Code 中阅读 txt 文档的插件。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "orange4moon",
   "repository": {
     "type": "git",
