@@ -2,8 +2,33 @@
 
 一个在 VS Code 中阅读 txt 文档的插件。
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/orange4moon.a-reader?label=VS%20Code%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=orange4moon.a-reader)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/orange4moon.a-reader)](https://marketplace.visualstudio.com/items?itemName=orange4moon.a-reader)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/orange4moon.a-reader)](https://marketplace.visualstudio.com/items?itemName=orange4moon.a-reader)
 [![GitHub](https://img.shields.io/badge/GitHub-orange4moon/a--reader-blue?logo=github)](https://github.com/orange4moon/a-reader)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+
+## 📦 安装
+
+### 方式 1：从 VS Code 市场安装（推荐）
+
+1. 打开 VS Code
+2. 按 `Cmd/Ctrl+Shift+X` 打开扩展视图
+3. 搜索 `A-Reader` 或 `orange4moon.a-reader`
+4. 点击 **"安装"** 按钮
+
+或者点击这里直接安装：
+[![Install](https://img.shields.io/badge/Install-A--Reader-blue?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=orange4moon.a-reader)
+
+### 方式 2：通过命令行安装
+
+```bash
+code --install-extension orange4moon.a-reader
+```
+
+### 方式 3：从 VSIX 文件安装
+
+从 [Releases](https://github.com/orange4moon/a-reader/releases) 下载最新的 `.vsix` 文件，然后在 VS Code 中从 VSIX 安装。
 
 ## 🚀 快速开始
 

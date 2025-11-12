@@ -12,12 +12,23 @@
     "url": "https://github.com/orange4moon/a-reader/issues"
   },
   "homepage": "https://github.com/orange4moon/a-reader#readme",
+  "qna": "marketplace",
+  "keywords": [
+    "txt",
+    "reader",
+    "文档",
+    "阅读器"
+  ],
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
     "Other"
   ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
