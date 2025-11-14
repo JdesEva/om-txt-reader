@@ -139,9 +139,9 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // 欢迎消息
-    vscode.window.showInformationMessage(
-        'A-Reader 已启动！按 Cmd/Ctrl+Shift+P，输入 "a-reader: 打开阅读器" 开始使用'
-    );
+    // vscode.window.showInformationMessage(
+    //     'A-Reader 已启动！按 Cmd/Ctrl+Shift+P，输入 "a-reader: 打开阅读器" 开始使用'
+    // );
 }
 
 export function deactivate() {

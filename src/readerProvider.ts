@@ -311,18 +311,19 @@ export class TxtReaderProvider {
         
         .sidebar {
             width: 250px;
+            flex-shrink: 0;
             background-color: var(--vscode-sideBar-background);
             border-right: 1px solid var(--vscode-panel-border);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: margin-left 0.3s ease, opacity 0.3s ease;
         }
         
         .sidebar.hidden {
-            transform: translateX(-100%);
-            position: absolute;
-            z-index: 10;
+            margin-left: -250px;
+            opacity: 0;
+            pointer-events: none;
         }
         
         .sidebar-tabs {
@@ -608,6 +609,7 @@ export class TxtReaderProvider {
         let totalLines = 0;
         let allChapters = [];
         let sidebarVisible = true;
+        let isInitialLoad = true; // 标记是否是初次加载
         
         // 标签页切换
         document.querySelectorAll('.sidebar-tab').forEach(tab => {
@@ -679,10 +681,10 @@ export class TxtReaderProvider {
             document.getElementById('progress-percent').textContent = percent;
             
             // 更新当前章节显示和高亮
-            updateCurrentChapter(line);
+            updateCurrentChapter(line, false); // 滚动时不自动定位
         }
         
-        function updateCurrentChapter(line) {
+        function updateCurrentChapter(line, shouldScroll = false) {
             // 找到当前行所在的章节
             let currentChapter = null;
             let currentChapterIndex = -1;
@@ -703,14 +705,16 @@ export class TxtReaderProvider {
                 chapterNameEl.textContent = '未识别章节';
             }
             
-            // 更新章节列表高亮并自动滚动
+            // 更新章节列表高亮
             document.querySelectorAll('.chapter-item').forEach((item, index) => {
                 if (index === currentChapterIndex) {
                     item.classList.add('active');
-                    // 自动滚动到当前激活的章节
-                    setTimeout(() => {
-                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 100);
+                    // 只在需要时自动滚动到当前激活的章节
+                    if (shouldScroll) {
+                        setTimeout(() => {
+                            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 100);
+                    }
                 } else {
                     item.classList.remove('active');
                 }
@@ -778,8 +782,11 @@ export class TxtReaderProvider {
                 </div>\`
             ).join('');
             
-            // 更新当前章节高亮
-            updateCurrentChapter(currentLine);
+            // 更新当前章节高亮，只在初次加载时自动滚动
+            updateCurrentChapter(currentLine, isInitialLoad);
+            if (isInitialLoad) {
+                isInitialLoad = false; // 首次加载后设为 false
+            }
         }
         
         function displaySearchResults(results, searchTerm) {

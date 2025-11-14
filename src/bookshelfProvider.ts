@@ -17,7 +17,7 @@ export class BookshelfProvider {
 
         this.panel = vscode.window.createWebviewPanel(
             'aReaderBookshelf',
-            'A-Reader 书架',
+            'A Reader',
             vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -131,7 +131,7 @@ export class BookshelfProvider {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Reader 书架</title>
+    <title>A Reader</title>
     <style>
         * {
             margin: 0;
@@ -310,7 +310,7 @@ export class BookshelfProvider {
 </head>
 <body>
     <div class="header">
-        <h1>📚 A-Reader 书架</h1>
+        <h1>📚 A Reader</h1>
         <div class="header-buttons">
             <button class="btn btn-secondary" onclick="refresh()">刷新</button>
             <button class="btn" onclick="openSettings()">配置</button>
