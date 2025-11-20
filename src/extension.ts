@@ -15,17 +15,17 @@ export function activate(context: vscode.ExtensionContext) {
     settingsProvider = new SettingsProvider(context.extensionUri);
 
     // 注册命令：打开书架
-    const openBookshelfCommand = vscode.commands.registerCommand('aReader.openBookshelf', async () => {
+    const openBookshelfCommand = vscode.commands.registerCommand('omTxtReader.openBookshelf', async () => {
         await bookshelfProvider!.show(context);
     });
 
     // 注册命令：打开配置
-    const openSettingsCommand = vscode.commands.registerCommand('aReader.openSettings', async () => {
+    const openSettingsCommand = vscode.commands.registerCommand('omTxtReader.openSettings', async () => {
         await settingsProvider!.show(context);
     });
 
     // 注册命令：打开文档
-    const openBookCommand = vscode.commands.registerCommand('aReader.openBook', async (uri?: vscode.Uri) => {
+    const openBookCommand = vscode.commands.registerCommand('omTxtReader.openBook', async (uri?: vscode.Uri) => {
         let fileUri = uri;
         
         if (!fileUri) {
@@ -57,21 +57,21 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // 注册命令：向下滚动
-    const scrollDownCommand = vscode.commands.registerCommand('aReader.scrollDown', () => {
+    const scrollDownCommand = vscode.commands.registerCommand('omTxtReader.scrollDown', () => {
         if (readerProvider) {
             readerProvider.scrollDown();
         }
     });
 
     // 注册命令：向上滚动
-    const scrollUpCommand = vscode.commands.registerCommand('aReader.scrollUp', () => {
+    const scrollUpCommand = vscode.commands.registerCommand('omTxtReader.scrollUp', () => {
         if (readerProvider) {
             readerProvider.scrollUp();
         }
     });
 
     // 注册命令：搜索
-    const searchCommand = vscode.commands.registerCommand('aReader.search', async () => {
+    const searchCommand = vscode.commands.registerCommand('omTxtReader.search', async () => {
         if (readerProvider) {
             const searchTerm = await vscode.window.showInputBox({
                 prompt: '请输入要搜索的文本'
@@ -84,14 +84,14 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // 注册命令：显示章节列表
-    const showChaptersCommand = vscode.commands.registerCommand('aReader.showChapters', () => {
+    const showChaptersCommand = vscode.commands.registerCommand('omTxtReader.showChapters', () => {
         if (readerProvider) {
             readerProvider.showChapters();
         }
     });
 
     // 注册命令：配置当前文档的章节分割规则
-    const configureBookPatternCommand = vscode.commands.registerCommand('aReader.configureBookPattern', async () => {
+    const configureBookPatternCommand = vscode.commands.registerCommand('omTxtReader.configureBookPattern', async () => {
         if (!readerProvider) {
             vscode.window.showWarningMessage('请先打开文档');
             return;
@@ -105,7 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         const filePath = activeEditor.document.uri.fsPath;
         const config = await BookConfigManager.loadConfig(filePath);
-        const globalConfig = vscode.workspace.getConfiguration('aReader');
+        const globalConfig = vscode.workspace.getConfiguration('omTxtReader');
         const defaultPattern = globalConfig.get<string>('defaultChapterPattern', '');
         
         const currentPattern = config?.chapterPattern || defaultPattern;

@@ -85,11 +85,11 @@ code --install-extension orange4moon.om-txt-reader
 
 | 配置项 | 说明 | 默认值 |
 |-------|------|--------|
-| `aReader.booksDirectory` | 文档目录 | "" |
-| `aReader.defaultChapterPattern` | 默认章节分割规则 | `^第[0-9一二三四五六七八九十百千]+[章节]\\s+.+$` |
-| `aReader.fontSize` | 阅读器字体大小（像素） | 16 |
-| `aReader.lineHeight` | 阅读器行高 | 1.8 |
-| `aReader.scrollStep` | 每次滚动的行数 | 3 |
+| `omTxtReader.booksDirectory` | 文档目录 | "" |
+| `omTxtReader.defaultChapterPattern` | 默认章节分割规则 | `^第[0-9一二三四五六七八九十百千]+[章节]\\s+.+$` |
+| `omTxtReader.fontSize` | 阅读器字体大小（像素） | 16 |
+| `omTxtReader.lineHeight` | 阅读器行高 | 1.8 |
+| `omTxtReader.scrollStep` | 每次滚动的行数 | 3 |
 
 ## 🛠️ 开发
 

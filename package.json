@@ -2,7 +2,7 @@
   "name": "om-txt-reader",
   "displayName": "OM-TXT-Reader",
   "description": "一个在 VS Code 中阅读 txt 文档的插件。",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "publisher": "orange4moon",
   "repository": {
     "type": "git",
@@ -34,64 +34,64 @@
   "contributes": {
     "commands": [
       {
-        "command": "aReader.openBookshelf",
+        "command": "omTxtReader.openBookshelf",
         "title": "om-txt-reader: 打开阅读器"
       },
       {
-        "command": "aReader.openSettings",
+        "command": "omTxtReader.openSettings",
         "title": "om-txt-reader: 打开配置"
       },
       {
-        "command": "aReader.search",
+        "command": "omTxtReader.search",
         "title": "om-txt-reader: 搜索文本"
       },
       {
-        "command": "aReader.showChapters",
+        "command": "omTxtReader.showChapters",
         "title": "om-txt-reader: 显示章节列表"
       },
       {
-        "command": "aReader.configureBookPattern",
+        "command": "omTxtReader.configureBookPattern",
         "title": "om-txt-reader: 配置当前文档章节分割规则"
       }
     ],
     "keybindings": [
       {
-        "command": "aReader.scrollDown",
+        "command": "omTxtReader.scrollDown",
         "key": "ctrl+pagedown",
         "mac": "cmd+pagedown",
-        "when": "aReaderActive"
+        "when": "omTxtReaderActive"
       },
       {
-        "command": "aReader.scrollUp",
+        "command": "omTxtReader.scrollUp",
         "key": "ctrl+pageup",
         "mac": "cmd+pageup",
-        "when": "aReaderActive"
+        "when": "omTxtReaderActive"
       }
     ],
     "configuration": {
       "title": "OM-TXT-Reader",
       "properties": {
-        "aReader.booksDirectory": {
+        "omTxtReader.booksDirectory": {
           "type": "string",
           "default": "",
           "description": "默认的文档目录"
         },
-        "aReader.defaultChapterPattern": {
+        "omTxtReader.defaultChapterPattern": {
           "type": "string",
           "default": "^第[0-9一二三四五六七八九十百千]+[章节]\\s+.+$",
           "description": "默认的章节分割规则"
         },
-        "aReader.fontSize": {
+        "omTxtReader.fontSize": {
           "type": "number",
           "default": 16,
           "description": "阅读器字体大小"
         },
-        "aReader.lineHeight": {
+        "omTxtReader.lineHeight": {
           "type": "number",
           "default": 1.8,
           "description": "阅读器行高"
         },
-        "aReader.scrollStep": {
+        "omTxtReader.scrollStep": {
           "type": "number",
           "default": 3,
           "description": "每次滚动的行数"

@@ -16,8 +16,8 @@ export class BookshelfProvider {
         }
 
         this.panel = vscode.window.createWebviewPanel(
-            'aReaderBookshelf',
-            'A Reader',
+            'omTxtReaderBookshelf',
+            'OM TXT Reader',
             vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -31,7 +31,7 @@ export class BookshelfProvider {
             async message => {
                 switch (message.command) {
                     case 'openBook':
-                        await vscode.commands.executeCommand('aReader.openBook', vscode.Uri.file(message.filePath));
+                        await vscode.commands.executeCommand('omTxtReader.openBook', vscode.Uri.file(message.filePath));
                         break;
                     case 'configureBook':
                         await this.configureBookPattern(message.filePath);
@@ -43,7 +43,7 @@ export class BookshelfProvider {
                         await this.selectDirectory();
                         break;
                     case 'openSettings':
-                        await vscode.commands.executeCommand('aReader.openSettings');
+                        await vscode.commands.executeCommand('omTxtReader.openSettings');
                         break;
                 }
             },
@@ -59,7 +59,7 @@ export class BookshelfProvider {
     }
 
     private async refresh() {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         const booksDir = config.get<string>('booksDirectory', '');
 
         if (!booksDir) {
@@ -90,7 +90,7 @@ export class BookshelfProvider {
         });
 
         if (result && result.length > 0) {
-            const config = vscode.workspace.getConfiguration('aReader');
+            const config = vscode.workspace.getConfiguration('omTxtReader');
             await config.update('booksDirectory', result[0].fsPath, vscode.ConfigurationTarget.Global);
             await this.refresh();
         }
@@ -98,7 +98,7 @@ export class BookshelfProvider {
 
     private async configureBookPattern(filePath: string) {
         const config = await BookConfigManager.loadConfig(filePath);
-        const globalConfig = vscode.workspace.getConfiguration('aReader');
+        const globalConfig = vscode.workspace.getConfiguration('omTxtReader');
         const defaultPattern = globalConfig.get<string>('defaultChapterPattern', '');
         
         const currentPattern = config?.chapterPattern || defaultPattern;
@@ -123,7 +123,7 @@ export class BookshelfProvider {
     }
 
     private async getWebviewContent(): Promise<string> {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         const fontSize = config.get<number>('fontSize', 16);
 
         return `<!DOCTYPE html>
@@ -131,7 +131,7 @@ export class BookshelfProvider {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Reader</title>
+    <title>OM TXT Reader</title>
     <style>
         * {
             margin: 0;
@@ -310,7 +310,7 @@ export class BookshelfProvider {
 </head>
 <body>
     <div class="header">
-        <h1>📚 A Reader</h1>
+        <h1>📚 OM TXT Reader</h1>
         <div class="header-buttons">
             <button class="btn btn-secondary" onclick="refresh()">刷新</button>
             <button class="btn" onclick="openSettings()">配置</button>

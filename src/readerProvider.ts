@@ -41,7 +41,7 @@ export class TxtReaderProvider {
 
         // 创建并显示 webview
         this.panel = vscode.window.createWebviewPanel(
-            'aReader',
+            'omTxtReader',
             path.basename(this.fileUri.fsPath),
             vscode.ViewColumn.One,
             {
@@ -51,7 +51,7 @@ export class TxtReaderProvider {
         );
 
         // 设置 context
-        vscode.commands.executeCommand('setContext', 'aReaderActive', true);
+        vscode.commands.executeCommand('setContext', 'omTxtReaderActive', true);
 
         // 扫描章节
         this.scanChapters();
@@ -95,7 +95,7 @@ export class TxtReaderProvider {
 
         // 监听 panel 关闭事件
         this.panel.onDidDispose(() => {
-            vscode.commands.executeCommand('setContext', 'aReaderActive', false);
+            vscode.commands.executeCommand('setContext', 'omTxtReaderActive', false);
             this.saveProgressNow();
             if (this.saveProgressTimer) {
                 clearTimeout(this.saveProgressTimer);
@@ -134,7 +134,7 @@ export class TxtReaderProvider {
 
     private scanChapters() {
         this.chapters = [];
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         
         // 优先使用文档特定的规则，否则使用全局默认规则
         let patternStr = this.bookConfig?.chapterPattern;
@@ -166,14 +166,14 @@ export class TxtReaderProvider {
     }
 
     public scrollUp() {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         const step = config.get<number>('scrollStep', 3);
         this.currentLine = Math.max(0, this.currentLine - step);
         this.updateWebview();
     }
 
     public scrollDown() {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         const step = config.get<number>('scrollStep', 3);
         this.currentLine = Math.min(this.lines.length - 1, this.currentLine + step);
         this.updateWebview();
@@ -276,7 +276,7 @@ export class TxtReaderProvider {
     }
 
     private getWebviewContent(): string {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         const fontSize = config.get<number>('fontSize', 16);
         const lineHeight = config.get<number>('lineHeight', 1.8);
 

@@ -15,7 +15,7 @@ export class SettingsProvider {
         }
 
         this.panel = vscode.window.createWebviewPanel(
-            'aReaderSettings',
+            'omTxtReaderSettings',
             'OM-TXT-Reader 配置',
             vscode.ViewColumn.One,
             {
@@ -68,7 +68,7 @@ export class SettingsProvider {
     }
 
     private async saveSettings(settings: any) {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         
         try {
             await config.update('booksDirectory', settings.booksDirectory, vscode.ConfigurationTarget.Global);
@@ -85,7 +85,7 @@ export class SettingsProvider {
     }
 
     private async sendCurrentSettings() {
-        const config = vscode.workspace.getConfiguration('aReader');
+        const config = vscode.workspace.getConfiguration('omTxtReader');
         
         this.sendMessage({
             command: 'updateSettings',
