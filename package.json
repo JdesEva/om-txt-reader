@@ -1,6 +1,6 @@
 {
-  "name": "om-txt-reader",
-  "displayName": "OM-TXT-Reader",
+  "name": "eva-reader",
+  "displayName": "EVA Reader",
   "description": "一个在 VS Code 中阅读 txt 文档的插件。",
   "version": "0.0.1",
   "publisher": "jdeseva",
@@ -34,84 +34,84 @@
   "contributes": {
     "commands": [
       {
-        "command": "omTxtReader.openBookshelf",
-        "title": "om-txt-reader: 打开阅读器"
+        "command": "evaReader.openBookshelf",
+        "title": "eva-reader: 打开阅读器"
       },
       {
-        "command": "omTxtReader.openSettings",
-        "title": "om-txt-reader: 打开配置"
+        "command": "evaReader.openSettings",
+        "title": "eva-reader: 打开配置"
       },
       {
-        "command": "omTxtReader.search",
-        "title": "om-txt-reader: 搜索文本"
+        "command": "evaReader.search",
+        "title": "eva-reader: 搜索文本"
       },
       {
-        "command": "omTxtReader.showChapters",
-        "title": "om-txt-reader: 显示章节列表"
+        "command": "evaReader.showChapters",
+        "title": "eva-reader: 显示章节列表"
       },
       {
-        "command": "omTxtReader.configureBookPattern",
-        "title": "om-txt-reader: 配置当前文档章节分割规则"
+        "command": "evaReader.configureBookPattern",
+        "title": "eva-reader: 配置当前文档章节分割规则"
       }
     ],
     "keybindings": [
       {
-        "command": "omTxtReader.scrollDown",
+        "command": "evaReader.scrollDown",
         "key": "ctrl+pagedown",
         "mac": "cmd+pagedown",
-        "when": "omTxtReaderActive"
+        "when": "evaReaderActive"
       },
       {
-        "command": "omTxtReader.scrollUp",
+        "command": "evaReader.scrollUp",
         "key": "ctrl+pageup",
         "mac": "cmd+pageup",
-        "when": "omTxtReaderActive"
+        "when": "evaReaderActive"
       }
     ],
     "configuration": {
-      "title": "OM-TXT-Reader",
+      "title": "EVA Reader",
       "properties": {
-        "omTxtReader.booksDirectory": {
+        "evaReader.booksDirectory": {
           "type": "string",
           "default": "",
           "description": "默认的文档目录"
         },
-        "omTxtReader.defaultChapterPattern": {
+        "evaReader.defaultChapterPattern": {
           "type": "string",
           "default": "^第[0-9一二三四五六七八九十百千]+[章节]\\s+.+$",
           "description": "默认的章节分割规则"
         },
-        "omTxtReader.fontSize": {
+        "evaReader.fontSize": {
           "type": "number",
           "default": 16,
           "description": "阅读器字体大小"
         },
-        "omTxtReader.lineHeight": {
+        "evaReader.lineHeight": {
           "type": "number",
           "default": 1.8,
           "description": "阅读器行高"
         },
-        "omTxtReader.scrollStep": {
+        "evaReader.scrollStep": {
           "type": "number",
           "default": 3,
           "description": "每次滚动的行数"
         },
-        "omTxtReader.chunkSize": {
+        "evaReader.chunkSize": {
           "type": "number",
           "default": 200,
           "description": "分块加载时每块的行数"
         },
-        "omTxtReader.bufferLines": {
+        "evaReader.bufferLines": {
           "type": "number",
           "default": 50,
           "description": "虚拟滚动缓冲区行数（上下各缓冲的行数）"
         },
-        "omTxtReader.enableVirtualScroll": {
+        "evaReader.enableVirtualScroll": {
           "type": "boolean",
           "default": true,
           "description": "是否启用虚拟滚动（大文件时建议启用）"
         },
-        "omTxtReader.largeFileThreshold": {
+        "evaReader.largeFileThreshold": {
           "type": "number",
           "default": 5,
           "description": "大文件阈值（MB），超过此大小将启用分块加载"

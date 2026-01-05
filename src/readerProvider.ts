@@ -53,7 +53,7 @@ export class TxtReaderProvider {
 
     // 创建并显示 webview
     this.panel = vscode.window.createWebviewPanel(
-      "omTxtReader",
+      "evaReader",
       path.basename(this.fileUri.fsPath),
       vscode.ViewColumn.One,
       {
@@ -63,7 +63,7 @@ export class TxtReaderProvider {
     );
 
     // 设置 context
-    vscode.commands.executeCommand("setContext", "omTxtReaderActive", true);
+    vscode.commands.executeCommand("setContext", "evaReaderActive", true);
 
     // 异步扫描章节（不阻塞 UI）
     this.scanChaptersAsync();
@@ -110,7 +110,7 @@ export class TxtReaderProvider {
 
     // 监听 panel 关闭事件
     this.panel.onDidDispose(() => {
-      vscode.commands.executeCommand("setContext", "omTxtReaderActive", false);
+      vscode.commands.executeCommand("setContext", "evaReaderActive", false);
       this.saveProgressNow();
       if (this.saveProgressTimer) {
         clearTimeout(this.saveProgressTimer);
@@ -132,7 +132,7 @@ export class TxtReaderProvider {
       const stats = await fs.promises.stat(this.fileUri.fsPath);
       this.fileSize = stats.size;
 
-      const config = vscode.workspace.getConfiguration("omTxtReader");
+      const config = vscode.workspace.getConfiguration("evaReader");
       const largeFileThreshold =
         config.get<number>("largeFileThreshold", 5) * 1024 * 1024; // 转换为字节
 
@@ -257,7 +257,7 @@ export class TxtReaderProvider {
       });
 
       // 缓存这个块（缓存大小限制）
-      const config = vscode.workspace.getConfiguration("omTxtReader");
+      const config = vscode.workspace.getConfiguration("evaReader");
       const chunkSize = config.get<number>("chunkSize", 200);
       if (this.chunkCache.size < 10 && resultLines.length > 0) {
         this.chunkCache.set(cacheKey, {
@@ -329,7 +329,7 @@ export class TxtReaderProvider {
    */
   private async scanChaptersAsync() {
     this.chapters = [];
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
 
     // 优先使用文档特定的规则，否则使用全局默认规则
     let patternStr = this.bookConfig?.chapterPattern;
@@ -461,14 +461,14 @@ export class TxtReaderProvider {
   }
 
   public scrollUp() {
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
     const step = config.get<number>("scrollStep", 3);
     this.currentLine = Math.max(0, this.currentLine - step);
     this.updateWebview();
   }
 
   public scrollDown() {
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
     const step = config.get<number>("scrollStep", 3);
     const maxLine = this.useChunkMode
       ? this.totalLines - 1
@@ -486,7 +486,7 @@ export class TxtReaderProvider {
 
       // 如果使用分块模式，先加载内容块，然后通知前端滚动
       if (this.useChunkMode && this.panel) {
-        const config = vscode.workspace.getConfiguration("omTxtReader");
+        const config = vscode.workspace.getConfiguration("evaReader");
         const bufferLines = config.get<number>("bufferLines", 50);
         const startLine = Math.max(0, line - bufferLines);
         const endLine = Math.min(this.totalLines - 1, line + bufferLines);
@@ -697,7 +697,7 @@ export class TxtReaderProvider {
       return;
     }
 
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
     const bufferLines = config.get<number>("bufferLines", 50);
     const enableVirtualScroll = config.get<boolean>(
       "enableVirtualScroll",
@@ -815,7 +815,7 @@ export class TxtReaderProvider {
   }
 
   private getWebviewContent(): string {
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
     const fontSize = config.get<number>("fontSize", 16);
     const lineHeight = config.get<number>("lineHeight", 1.8);
 
@@ -824,7 +824,7 @@ export class TxtReaderProvider {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OM-TXT-Reader</title>
+    <title>EVA Reader</title>
     <style>
         * {
             margin: 0;

@@ -15,8 +15,8 @@ export class SettingsProvider {
     }
 
     this.panel = vscode.window.createWebviewPanel(
-      "omTxtReaderSettings",
-      "OM-TXT-Reader 配置",
+      "evaReaderSettings",
+      "EVA Reader 配置",
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -68,7 +68,7 @@ export class SettingsProvider {
   }
 
   private async saveSettings(settings: any) {
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
 
     try {
       await config.update(
@@ -125,7 +125,7 @@ export class SettingsProvider {
   }
 
   private async sendCurrentSettings() {
-    const config = vscode.workspace.getConfiguration("omTxtReader");
+    const config = vscode.workspace.getConfiguration("evaReader");
 
     this.sendMessage({
       command: "updateSettings",
@@ -158,7 +158,7 @@ export class SettingsProvider {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OM-TXT-Reader 配置</title>
+    <title>EVA Reader 配置</title>
     <style>
         * {
             margin: 0;
@@ -326,7 +326,7 @@ export class SettingsProvider {
 </head>
 <body>
     <div class="header">
-        <h1>⚙️ OM-TXT-Reader 配置</h1>
+        <h1>⚙️ EVA Reader 配置</h1>
     </div>
     
     <form id="settings-form">

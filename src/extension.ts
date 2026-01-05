@@ -9,14 +9,14 @@ let bookshelfProvider: BookshelfProvider | undefined;
 let settingsProvider: SettingsProvider | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log("OM-TXT-Reader 插件已激活");
+  console.log("EVA Reader 插件已激活");
 
   bookshelfProvider = new BookshelfProvider(context.extensionUri);
   settingsProvider = new SettingsProvider(context.extensionUri);
 
   // 注册命令：打开书架
   const openBookshelfCommand = vscode.commands.registerCommand(
-    "omTxtReader.openBookshelf",
+    "evaReader.openBookshelf",
     async () => {
       await bookshelfProvider!.show(context);
     }
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：打开配置
   const openSettingsCommand = vscode.commands.registerCommand(
-    "omTxtReader.openSettings",
+    "evaReader.openSettings",
     async () => {
       await settingsProvider!.show(context);
     }
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：打开文档
   const openBookCommand = vscode.commands.registerCommand(
-    "omTxtReader.openBook",
+    "evaReader.openBook",
     async (uri?: vscode.Uri) => {
       let fileUri = uri;
 
@@ -68,7 +68,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：向下滚动
   const scrollDownCommand = vscode.commands.registerCommand(
-    "omTxtReader.scrollDown",
+    "evaReader.scrollDown",
     () => {
       if (readerProvider) {
         readerProvider.scrollDown();
@@ -78,7 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：向上滚动
   const scrollUpCommand = vscode.commands.registerCommand(
-    "omTxtReader.scrollUp",
+    "evaReader.scrollUp",
     () => {
       if (readerProvider) {
         readerProvider.scrollUp();
@@ -88,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：搜索
   const searchCommand = vscode.commands.registerCommand(
-    "omTxtReader.search",
+    "evaReader.search",
     async () => {
       if (readerProvider) {
         const searchTerm = await vscode.window.showInputBox({
@@ -104,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：显示章节列表
   const showChaptersCommand = vscode.commands.registerCommand(
-    "omTxtReader.showChapters",
+    "evaReader.showChapters",
     () => {
       if (readerProvider) {
         readerProvider.showChapters();
@@ -114,7 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 注册命令：配置当前文档的章节分割规则
   const configureBookPatternCommand = vscode.commands.registerCommand(
-    "omTxtReader.configureBookPattern",
+    "evaReader.configureBookPattern",
     async () => {
       if (!readerProvider) {
         vscode.window.showWarningMessage("请先打开文档");
@@ -129,7 +129,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const filePath = activeEditor.document.uri.fsPath;
       const config = await BookConfigManager.loadConfig(filePath);
-      const globalConfig = vscode.workspace.getConfiguration("omTxtReader");
+      const globalConfig = vscode.workspace.getConfiguration("evaReader");
       const defaultPattern = globalConfig.get<string>(
         "defaultChapterPattern",
         ""
@@ -166,10 +166,10 @@ export function activate(context: vscode.ExtensionContext) {
     configureBookPatternCommand
   );
 
-  // 欢迎消息
-  // vscode.window.showInformationMessage(
-  //     'OM-TXT-Reader 已启动！按 Cmd/Ctrl+Shift+P，输入 "om-txt-reader: 打开阅读器" 开始使用'
-  // );
+    // 欢迎消息
+    // vscode.window.showInformationMessage(
+    //     'EVA Reader 已启动！按 Cmd/Ctrl+Shift+P，输入 "eva-reader: 打开阅读器" 开始使用'
+    // );
 }
 
 export function deactivate() {
