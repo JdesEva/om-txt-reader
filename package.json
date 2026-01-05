@@ -2,16 +2,16 @@
   "name": "om-txt-reader",
   "displayName": "OM-TXT-Reader",
   "description": "一个在 VS Code 中阅读 txt 文档的插件。",
-  "version": "0.2.0",
-  "publisher": "orange4moon",
+  "version": "0.0.1",
+  "publisher": "jdeseva",
   "repository": {
     "type": "git",
-    "url": "https://github.com/orange4moon/om-txt-reader.git"
+    "url": "https://github.com/JdesEva/om-txt-reader.git"
   },
   "bugs": {
-    "url": "https://github.com/orange4moon/om-txt-reader/issues"
+    "url": "https://github.com/JdesEva/om-txt-reader/issues"
   },
-  "homepage": "https://github.com/orange4moon/om-txt-reader#readme",
+  "homepage": "https://github.com/JdesEva/om-txt-reader#readme",
   "qna": "marketplace",
   "keywords": [
     "txt",
@@ -95,6 +95,26 @@
           "type": "number",
           "default": 3,
           "description": "每次滚动的行数"
+        },
+        "omTxtReader.chunkSize": {
+          "type": "number",
+          "default": 200,
+          "description": "分块加载时每块的行数"
+        },
+        "omTxtReader.bufferLines": {
+          "type": "number",
+          "default": 50,
+          "description": "虚拟滚动缓冲区行数（上下各缓冲的行数）"
+        },
+        "omTxtReader.enableVirtualScroll": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用虚拟滚动（大文件时建议启用）"
+        },
+        "omTxtReader.largeFileThreshold": {
+          "type": "number",
+          "default": 5,
+          "description": "大文件阈值（MB），超过此大小将启用分块加载"
         }
       }
     }
